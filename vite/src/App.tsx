@@ -1,35 +1,37 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
-const App: React.FC = () => {
-  const [count, setCount] = useState<number>(0);
-  const interval = useRef<NodeJS.Timeout | null>(null);
+const App = () => {
+  const arr = [
+    { name: "Amir", rollNo: "1824" },
+    { name: "Umar", rollNo: "1822" },
+    { name: "Zain", rollNo: "1834" },
+  ];
 
-  const startCounter = () => {
-    stopCounter(); // Clear any existing interval
-    interval.current = setInterval(() => {
-      setCount((prevCount) => prevCount + 1);
-    }, 10);
-  };
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
-  const stopCounter = () => {
- 
-      clearInterval(interval.current);
-    
-    
-  };
-
-  const resetCounter = () => {
-    stopCounter();
-    setCount(0);
-  };
+  // Filter data based on search term
+const filteredData = arr.filter((item) =>
+  item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  item.rollNo.toLowerCase().includes(searchTerm.toLowerCase())
+);
 
   return (
-    <div>
-      <div>{count}</div>
-      <button onClick={stopCounter}>Stop</button>
-      <button onClick={resetCounter}>Reset</button>
-       <button onClick={startCounter}>Start</button>
-    </div>
+    <>
+      <input
+        type="text"
+        placeholder="Search by name"
+        onChange={(e) => setSearchTerm(e.target.value)}
+        value={searchTerm}
+      />
+
+      <ul>
+        {filteredData.map((item, index) => (
+          <li key={index}>
+            Name: {item.name}, Roll No: {item.rollNo}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 
