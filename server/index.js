@@ -1,5 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import cors from 'cors'
 import dotenv from "dotenv"
 import Route from "./route/store.route.js"
 
@@ -8,7 +9,7 @@ const app = express()
 
 // Middleware to parse JSON
 app.use(express.json())
-
+app.use(cors())
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("DB connected ....."))
