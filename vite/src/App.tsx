@@ -14,7 +14,8 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/store");
+      const res = await axios.get(`${import.meta.env.VITE_FRONTEND_URL}/api/store`);
+
         setData(res.data.data);
       } catch (err) {
         console.error("Error fetching data:", err);
