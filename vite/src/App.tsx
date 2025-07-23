@@ -16,6 +16,7 @@ const App = () => {
       try {
       const res = await axios.get(`${import.meta.env.VITE_FRONTEND_URL}/api/store`);
         setData(res.data.data);
+        console.log("Backend URL: ", import.meta.env.VITE_FRONTEND_URL);
       } catch (err) {
         console.error("Error fetching data:", err);
       }
