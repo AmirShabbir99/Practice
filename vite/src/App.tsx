@@ -15,7 +15,6 @@ const App = () => {
     const fetchData = async () => {
       try {
       const res = await axios.get(`${import.meta.env.VITE_FRONTEND_URL}/api/store`);
-
         setData(res.data.data);
       } catch (err) {
         console.error("Error fetching data:", err);
@@ -31,7 +30,7 @@ const App = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-200 via-yellow-100 to-white p-6">
+    <div className="min-h-screen bg-gradient-to-br from-green-200 via-yellow-100 to-white p-6 pt-6">
       <div className="max-w-2xl mx-auto bg-white shadow-xl rounded-2xl p-6">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
           Student Search
